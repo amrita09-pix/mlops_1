@@ -32,7 +32,12 @@ list_of_files = [
     "experiment/experiments.ipynb"
 ]
 
-for filepath in list_of_files:
+list_of_files_2 = [
+    "mlops_1/tox.ini"
+]
+
+
+for filepath in list_of_files_2:
     filepath = Path(filepath)  # Ensure consistent Path handling
     # Extract parent directory and ensure its existence
     parent_dir = filepath.parent
