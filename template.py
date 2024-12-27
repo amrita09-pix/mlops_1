@@ -1,15 +1,14 @@
 import os
 from pathlib import Path
-import logging
 
-package_name ='mongodb_connect_2'
+package_name = 'mongodb_connect'
 
 list_of_files = [
     ".github/workflows/.gitkeep",
     "src/__init__.py",
     "src/components/__init__.py",
-    f'src/{package_name}/__init__.py',
-    f'src/{package_name}/mongo_crud.py',
+    f"src/{package_name}/__init__.py",
+    f"src/{package_name}/mongo_crud.py",
     "src/components/data_ingestion.py",
     "src/components/data_transformation.py",
     "src/components/model_trainer.py",
@@ -31,16 +30,16 @@ list_of_files = [
     "pyproject.toml",
     "tox.ini",
     "experiment/experiments.ipynb"
-
 ]
 
 for filepath in list_of_files:
-    filepath = Path(filepath)
-    filedir,filename = os.path.split(filepath)
-    if filedir !="":
-        os.makedirs(filedir,exist_ok = True)
-        #logging.info(f'Creatingg directory {filedir} for filename {filename}')
+    filepath = Path(filepath)  # Ensure consistent Path handling
+    # Extract parent directory and ensure its existence
+    parent_dir = filepath.parent
+    if parent_dir:
+        parent_dir.mkdir(parents=True, exist_ok=True)
     
-    if not(os.path.exists(filepath)) or (os.path.getsize(filepath)==0):
-        with open(filepath,'w') as f:
-            pass
+    # Create the file if it does not exist or if it's empty
+    if not filepath.exists() or filepath.stat().st_size == 0:
+        filepath.touch()
+        print(f"Created file: {filepath}")
