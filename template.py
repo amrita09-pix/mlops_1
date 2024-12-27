@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 import logging
 
-package_name ='mongodb_connect'
+package_name ='mongodb_connect_2'
 
 list_of_files = [
     ".github/workflows/.gitkeep",
